@@ -1,9 +1,7 @@
 Создать двух пользователей (с помощью метода User.objects.create_user('username')).
 
 	python manage.py shell
-from django.db import models
-from django.contrib.auth.models import User
-from django.db.models import Sum
+
 from news.models import *
 	dir()
 
@@ -12,8 +10,8 @@ from news.models import *
 
 Создать два объекта модели Author, связанные с пользователями.
 
-	Author.objects.create(authorUser=u1) 
-	Author.objects.create(authorUser=u2)
+	Author.objects.create(user=u1) 
+	Author.objects.create(user=u2)
 
 Добавить 4 категории в модель Category.
 
@@ -40,69 +38,78 @@ from news.models import *
 Создать как минимум 4 комментария к разным объектам модели Post 
 (в каждом объекте должен быть как минимум один комментарий).
 
-	Comment.objects.create(postCom=Post.objects.get(id=1), userC=Author.objects.get(id=1).authorUser, textCom='comment on the policy in the first article from author 1')
-	Comment.objects.create(postCom=Post.objects.get(id=1), userC=Author.objects.get(id=2).authorUser, textCom='comment on the policy in the first article from author 2')
-	Comment.objects.create(postCom=Post.objects.get(id=2), userC=Author.objects.get(id=1).authorUser, textCom='comment on the Sport in the second article from author 1')
-	Comment.objects.create(postCom=Post.objects.get(id=2), userC=Author.objects.get(id=2).authorUser, textCom='comment on the Sport in the second article from author 2')
+	Comment.objects.create(postCom=Post.objects.get(id=1), user=Author.objects.get(id=1).user, textCom='comment on the policy in the first article from author 1')
+	Comment.objects.create(postCom=Post.objects.get(id=1), user=Author.objects.get(id=2).user, textCom='comment on the policy in the first article from author 2')
+	Comment.objects.create(postCom=Post.objects.get(id=2), user=Author.objects.get(id=1).user, textCom='comment on the Sport in the second article from author 1')
+	Comment.objects.create(postCom=Post.objects.get(id=2), user=Author.objects.get(id=2).user, textCom='comment on the Sport in the second article from author 2')
 
 
 
 Применяя функции like() и dislike() к статьям/новостям и комментариям, скорректировать рейтинги этих объектов.
 
 	Post.objects.get(id=1).like()
-	Post.objects.get(id=1).dislike()
+	Post.objects.get(id=1).like()
+	Post.objects.get(id=2).like()
 	Post.objects.get(id=2).like()
 	Post.objects.get(id=2).dislike()
 
 	Comment.objects.get(id=1).like()
-	Comment.objects.get(id=1).dislike()
 	Comment.objects.get(id=2).like()
 	Comment.objects.get(id=2).dislike()
 
 	Comment.objects.get(id=3).like()
 	Comment.objects.get(id=3).dislike()
 
-	Comment.objects.get(id=2).ratingCom
+	Comment.objects.get(id=2).rating
 
 Обновить рейтинги пользователей.
 
 	a1 = Author.objects.get(id=1)
 	a1.update_rating()
-	
+	a1.ratingAuthor
+	a2 = Author.objects.get(id=2)
+	a2.update_rating()
+	a2.ratingAuthor
 
 Вывести username и рейтинг лучшего пользователя
 
-	a1.ratingAuthor
-	a1.post_set.all().values('rating')
-	a1.authorUser.comment_set.all().values('ratingAuthor')
+best_user = Author.objects.order_by('-ratingAuthor').first()
+print(best_user.user.username, best_user.ratingAuthor)
 
+ИЛИ
 
-	a2 = Author.objects.all().order_by('-ratingAuthor')[:1] 
-	a2
-	for b in a2:
-		b.authorUser.username
-		b.ratingAuthor
-
-
+best_user = User.objects.order_by('-author__ratingAuthor').first()
+username = best_user.username
+rating = best_user.author.ratingAuthor
+print(f"Лучший пользователь: {username}, рейтинг: {rating}")
 
 
 Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, основываясь на лайках/дислайках к этой статье.
 
-a3 = Post.objects.all().order_by('-rating')[:1]
-for j in a3:
-	f"Data : {j.timeCreate.day}"
-	f"Rating: {j.rating}"
-	j.author.authorUser
-	j.title
-	j.preview()
+best_post = Post.objects.order_by('-rating').first()
+date_added = best_post.timeCreate
+username = best_post.author.user.username
+rating = best_post.rating
+title = best_post.title
+preview = best_post.preview()
+print(f"Дата добавления:{date_added} Автор:{username} Рейтинг:{rating} Заголовок: {title} Превью: {preview}")
 
 
-Вывести все комментарии (дата, пользователь, рейтинг, текст) к этой статье.
+Вывести все комментарии (дата, пользователь, рейтинг, текст) к лучшей статье.
 
-a4 = Comment.objects.all().filter(postCom=a3)
+best_post = Post.objects.order_by('-rating').first()
+comments = Comment.objects.filter(postCom=best_post)
 
-for d in a4:
-	F"Data : {d.timeCom.day}/{d.timeCom.month}/{d.timeCom.year}"
-	d.userC
-	F"Rating : {d.rating}"
-	d.text
+comments_data = []
+for comment in comments:
+      comment_data = {
+	'Дата': comment.timeCom, 
+	'Пользователь': comment.user.username,
+	'Рейтинг': comment.rating, 
+	'Текст': comment.textCom
+       }
+       comments_data.append(comment_data)
+print(f"Комментарии:\n{comments_data}")
+
+
+

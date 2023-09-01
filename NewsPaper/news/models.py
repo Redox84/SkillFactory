@@ -1,25 +1,22 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
-
+from django.db.models.functions import Coalesce
 
 # Create your models here.
 
 
 class Author(models.Model):
-    authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.IntegerField(default=0)
 
     def update_rating(self):
-        post_sum = self.post_set.aggregate(postRating=Sum('rating'))
-        temp_sum_p = 0
-        temp_sum_p += post_sum.get('postRating')
+        post_sum = self.post_set.aggregate(pr=Coalesce(Sum('rating'), 0))['pr']
 
-        comment_sum = self.authorUser.comment_set.aggregate(commentRating=Sum('rating'))
-        temp_sum_c = 0
-        temp_sum_c += comment_sum.get('commentRating')
+        comment_sum = self.user.comment_set.aggregate(cr=Coalesce(Sum('rating'), 0))['cr']
 
-        self.ratingAuthor = temp_sum_p * 3 + temp_sum_c
+        post_comment_rating = self.post_set.aggregate(pcr=Coalesce(Sum('comment__rating'), 0))['pcr']
+        self.ratingAuthor = post_sum * 3 + comment_sum + post_comment_rating
         self.save()
 
 
@@ -65,7 +62,7 @@ class PostCategory(models.Model):
 
 class Comment(models.Model):
     postCom = models.ForeignKey(Post, on_delete=models.CASCADE)
-    userC = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     textCom = models.TextField(max_length=200)
     timeCom = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0)
