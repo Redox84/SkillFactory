@@ -1,0 +1,31 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %} <!-- загружаем фильтр-->
+{% load custom_tags %}<!-- Подключаем новый файл с нашим тегом -->
+
+
+
+{% block content %}
+    <h1>Список новостей</h1>
+	<h3>{% current_time '%d %b %Y' %}</h3>
+
+<hr/>
+{% if news %}
+
+    <table>
+        <tr>
+            <td>Заголовок</td>
+            <td>Дата публикации</td>
+            <td>Текст</td>
+        </tr>
+
+        {% for new in news %}
+            <td>{{ new.title|censor }}&emsp;</td>
+            <td>{{ new.timeCreate|date:'d M Y, H m'}}&emsp;</td>
+            <td>{{ new.content|truncatechars:20|censor }} {{"..."}}&emsp;</td>
+            <a href="{% url 'news:news_detail' post.id %}">Читать полностью</a>
+        {% endfor %}
+    </table>
+{% else %}
+    <h2>Новостей нет!</h2>
+{% endif %}
+{% endblock content %}
