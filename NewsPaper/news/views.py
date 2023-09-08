@@ -12,8 +12,8 @@ class NewsList(ListView):  #список превью
     context_object_name = 'news'
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(type='NW')  # Фильтруем только новости
-        return queryset.order_by('-creationDate')        # и сортируем по убыванию даты
+        queryset = super().get_queryset().filter(choiceType='NW')  # Фильтруем только новости
+        return queryset.order_by('-timeCreate')        # и сортируем по убыванию даты
 
 
 class NewsDetail(DetailView):  #полные новости
