@@ -1,0 +1,24 @@
+{% extends 'flatpages/default.html' %}
+{% load cenzura %} <!-- загружаем фильтр-->
+{% load custom_tags %}<!-- Подключаем новый файл с нашим тегом -->
+
+
+{% block content %}
+    <h1 style="text-align: center;">Список статей</h1>
+	<h3 style="text-align: center;">{% current_time '%d %b %Y' %}</h3>
+
+<hr/>
+{% if article %}
+
+        {% for post in article %}
+            <h3 style="text-align: center;">{{ post.title|censor }}</h3>
+            <p style="text-align: center;">{{ post.timeCreate|date:'d M Y, H m' }}</p>
+            <p style="text-align: center;">{{ post.content|truncatechars:20|censor }} {{"..."}}</p>
+            <p style="text-align: center;"><a href="{% url 'news:article_detail' post.id %}">Читать полностью</a></p>
+            <hr/>
+        {% endfor %}
+
+{% else %}
+    <h2>Статей нет!</h2>
+{% endif %}
+{% endblock content %}

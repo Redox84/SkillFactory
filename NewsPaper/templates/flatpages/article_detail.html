@@ -1,0 +1,9 @@
+{% extends 'flatpages/default.html' %}
+
+{% load cenzura %}
+
+{% block content %}
+    <h1 style="text-align: center;">{{ post.title|censor }}</h1>
+    <div style="margin-left: 50px;">{{ post.timeCreate|date:"d.m.Y" }}</div>
+    <div style="margin: 15px 100px;">{{ post.content|censor }}</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'flatpages/default.html' %}
+
+{% load cenzura %}
+{% load custom_tags %}
+{% block content %}
+
+    <h1 style="text-align: center;">Страница поиска</h1>
+<hr />
+<div align="center">
+    <form action="" method="GET">
+        {{ filter.form.title }}
+        {{ filter.form.author }}
+        {{ filter.form.choiceType }}
+        {{ filter.form.categoryPost }}
+        {{ filter.form.timeCreate }}
+        <button type="submit">Поиск</button>
+    </form>
+</div>
+<hr />
+    <ul>
+        {% for post in search %}
+            <h4><a href="{% url 'news:news_detail' post.id %}">{{ post.title|censor }}</a></h4>
+        {% empty %}
+            <h3>Ничего не найдено</h3>
+        {% endfor %}
+    </ul>
+<hr />
+
+{% endblock %}
