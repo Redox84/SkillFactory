@@ -1,0 +1,15 @@
+{% extends "sign/main.html" %}
+
+{% block content %}
+<h3 style="text-align: center"> Вы успешно авторизовались ! </h3>
+<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+<div> Здесь может содержаться персональная информация для каждого пользователя </div>
+
+<a href="/news/" style="padding-left: 20px"> Перейти к просмотру новостей </a>
+<hr>
+{% if is_not_authors %}
+<button style="margin-left: 20px"> <a href="/upgrade/"> Стать автором </a> </button>
+{% endif %}
+<button style="margin-left: 20px"> <a href="/accounts/logout/">Выйти</a> </button>
+
+{% endblock %}

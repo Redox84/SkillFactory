@@ -17,9 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
-    path('', include('news.urls'))
-
+    path('', include('news.urls')),
+    path('accounts/', include('allauth.urls')),
+    # ввиду подключения django-allauth следующие строки нам не нужны
+    # path('login/', LoginView.as_view(), name='login'),
+    # path('logout/', LogoutView.as_view(), name='logout'),
+    # path('signup/', BaseRegisterView.as_view(), name='signup'),
 ]

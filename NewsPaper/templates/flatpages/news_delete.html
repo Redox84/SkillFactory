@@ -4,10 +4,14 @@
 <div align="center">
 <h1>Удаление</h1>
 <hr>
- <p>Вы уверены, что хотите удалить эту новость?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Удалить</button>
-  </form>
+    {% if user.is_authenticated %}
+        <p>Вы уверены, что хотите удалить эту новость?</p>
+        <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        </form>
+    {% else %}
+        <p>У Вас не достаточно прав для удаления новостей</p>
+    {% endif %}
 </div>
 {% endblock %}

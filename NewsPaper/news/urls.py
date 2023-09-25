@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import (NewsList, NewsDetail, Search, ArticleList, ArticleDetail,
-                    NewsEdit, NewsDelete, ArticleEdit, ArticleDelete)
+from .views import (NewsList, NewsDetail, Search, ArticleList, ArticleDetail, upgrade_me,
+                    NewsEdit, NewsDelete, ArticleEdit, ArticleDelete, ProtectedView, AuthorView)
 from . import views
+
 
 app_name = 'news'
 
 urlpatterns = [
-    path('news/search/', Search.as_view(), name='search'),  # URL-шаблон Поисковой страницы
+    path('search/', Search.as_view(), name='search'),  # URL-шаблон Поисковой страницы
     path('news/', NewsList.as_view(), name='news'),  # URL-шаблон для списка новостей
     path('news/<int:pk>/', NewsDetail.as_view(), name='news_detail'),  # URL-шаблон для полной новости
     path('news/create/', views.NewsCreate.as_view(), name='news_create'),  # URL-шаблон для создания новостей
@@ -17,4 +18,7 @@ urlpatterns = [
     path('article/create/', views.ArticleCreate.as_view(), name='articles_create'),  # URL-шаблон для создания статьи
     path('article/<int:pk>/edit/', ArticleEdit.as_view(), name='article_edit'), # URL-шаблон для редактирования статьи
     path('article/<int:pk>/delete/', ArticleDelete.as_view(), name='article_delete'), # URL-шаблон для удаления статьи
+    path('upgrade/', upgrade_me, name='upgrade'),
+    path('prodected_page/', ProtectedView.as_view()),  # URL-шаблон страницы после авторизации
+    path('status/', AuthorView.as_view())
 ]

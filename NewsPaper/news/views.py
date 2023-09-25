@@ -1,9 +1,13 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post,  Category
+from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
+from django.http import HttpResponseRedirect
+
+from .models import Post,  Category, Author
 from .filter import PostFilter
 from .forms import NewsForm, ArticleForm
-from django.urls import reverse_lazy
 
 
 #  Новости
@@ -25,28 +29,35 @@ class NewsDetail(DetailView):  # полные новости
 
 
 # Добавляем новое представление для создания новостей.
-class NewsCreate(CreateView):
+class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     model = Post
     form_class = NewsForm
     template_name = 'flatpages/news_create.html'
-    success_url = 'news'
+    success_url = '/news/'
 
     def form_valid(self, form):
         post = form.save(commit=False)
+
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect('/accounts/login/')
+
         post.choiceType = 'NW'
         post.author = self.request.user.author
         post.save()
         return super().form_valid(form)
 
 
-class NewsEdit(UpdateView):
+class NewsEdit(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     model = Post
     form_class = NewsForm
     template_name = 'flatpages/news_edit.html'
     success_url = '/news/'
 
 
-class NewsDelete(DeleteView):
+class NewsDelete(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'flatpages/news_delete.html'
     success_url = '/news/'
@@ -71,7 +82,8 @@ class ArticleDetail(DetailView):
     context_object_name = 'post'
 
 
-class ArticleCreate(CreateView):
+class ArticleCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     model = Post
     form_class = ArticleForm
     template_name = 'flatpages/article_create.html'
@@ -79,20 +91,26 @@ class ArticleCreate(CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
+
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect('/accounts/login/')
+
         post.type = 'AR'
         post.author = self.request.user.author
         post.save()
         return super().form_valid(form)
 
 
-class ArticleEdit(UpdateView):
+class ArticleEdit(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     model = Post
     form_class = ArticleForm
     template_name = 'flatpages/article_edit.html'
     success_url = '/article/'
 
 
-class ArticleDelete(DeleteView):
+class ArticleDelete(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'flatpages/article_delete.html'
     success_url = '/article/'
@@ -116,3 +134,26 @@ class Search(ListView):
         context['filter'] = self.filterset
         context['categories'] = Category.objects.all()  # Получение всех категорий
         return context
+
+
+class ProtectedView(LoginRequiredMixin, TemplateView):
+    template_name = 'sign/prodected_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_authors'] = not self.request.user.groups.filter(name='authors').exists()
+        return context
+
+
+@login_required
+def upgrade_me(request):
+    user = request.user
+    authors_group = Group.objects.get(name='authors')
+    if not request.user.groups.filter(name='authors').exists():
+        authors_group.user_set.add(user)
+        Author.objects.create(user=user)
+    return HttpResponseRedirect('/status/')
+
+
+class AuthorView(LoginRequiredMixin, TemplateView):
+    template_name = 'sign/status.html'

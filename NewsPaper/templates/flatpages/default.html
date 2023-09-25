@@ -13,19 +13,30 @@
 </head>
     <body>
         <!-- Responsive navbar-->
+                <!-- Responsive navbar-->
+        <div>
+            {% if user.is_authenticated %}
+            <h6><a style="margin-left: 20px" href="/prodected_page/"> {{request.user.username }}</a><a style="margin-left: 50px" href="/accounts/logout/">Выйти</a> </h6>
+            {% else %}
+            <h6><a href="/accounts/login/">Авторизация</a></h6>
+            {% endif %}
+        </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">News Portal</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/news/">Новости</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/article/">Статьи</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/news/create/">Создать новость</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/article/create/">Создать статью</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search/">Поиск</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Список</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="/news/">Новости</a></li>
+                                <li><a class="dropdown-item" href="/article/">Статьи</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>

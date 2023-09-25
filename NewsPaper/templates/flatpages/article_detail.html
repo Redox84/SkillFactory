@@ -6,4 +6,8 @@
     <h1 style="text-align: center;">{{ post.title|censor }}</h1>
     <div style="margin-left: 50px;">{{ post.timeCreate|date:"d.m.Y" }}</div>
     <div style="margin: 15px 100px;">{{ post.content|censor }}</div>
+<div style="margin: 50px 150px;">
+        <button> <a href="{% url 'news:news_edit' post.id %}"> Редактировать </a> </button>
+        <button style="margin: 15px;"> <a href="{% url 'news:news_delete' post.id %}"> Удалить </a> </button>
+</div>
 {% endblock %}
