@@ -4,13 +4,23 @@
 
 
 {% block content %}
-    <h1 style="text-align: center;">Список статей</h1>
+    <h1 style="text-align: center;">Список новостей</h1>
 	<h3 style="text-align: center;">{% current_time '%d %b %Y' %}</h3>
 
-<hr/>
-{% if article %}
+<div align="center">
+    {% if is_not_subscriber %}
 
-        {% for post in article %}
+    <h6><a href="{% url 'news:subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></h6>
+    {% else %}
+    <h6><a href="{% url 'news:unsubscribe' category.id %}" class="btn btn-secondary btn-sm">Отписаться</a></h6>
+    {% endif %}
+</div>
+
+<hr/>
+
+{% if cat_view %}
+
+        {% for post in cat_view %}
             <h3 style="text-align: center;">{{ post.title|censor }}</h3>
             <p style="text-align: center;">{{ post.timeCreate|date:'d M Y, H m' }}</p>
             <div align="center">
@@ -18,14 +28,14 @@
               <a href="{% url 'news:category_list' category.id %}" >{{ category }}</a>
               {% endfor %}
             </div>
+
             <p style="text-align: center;">{{ post.content|truncatechars:20|censor }} {{"..."}}</p>
-            <p style="text-align: center;"><a href="{% url 'news:article_detail' post.id %}">Читать полностью</a></p>
-
-
+            <p style="text-align: center;"><a href="{% url 'news:news_detail' post.id %}">Читать полностью</a></p>
             <hr/>
+
         {% endfor %}
 
 {% else %}
-    <h2>Статей нет!</h2>
+    <h2>Новостей нет!</h2>
 {% endif %}
 {% endblock content %}

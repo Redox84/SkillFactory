@@ -13,8 +13,16 @@
         {% for post in news %}
             <h3 style="text-align: center;">{{ post.title|censor }}</h3>
             <p style="text-align: center;">{{ post.timeCreate|date:'d M Y, H m' }}</p>
-            <p style="text-align: center;">{{ post.content|truncatechars:20|censor }} {{"..."}}</p>
+
+            <div align="center">
+              {% for category in post.categoryPost.all %}
+              <a href="{% url 'news:category_list' category.id %}" >{{ category }}</a>
+              {% endfor %}
+            </div>
+
+            <p style="text-align: center;">{{ post.content|truncatechars:20|censor }} {{"..."}} </p>
             <p style="text-align: center;"><a href="{% url 'news:news_detail' post.id %}">Читать полностью</a></p>
+
             <hr/>
         {% endfor %}
 

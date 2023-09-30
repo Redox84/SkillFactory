@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import (NewsList, NewsDetail, Search, ArticleList, ArticleDetail, upgrade_me,
-                    NewsEdit, NewsDelete, ArticleEdit, ArticleDelete, ProtectedView, AuthorView)
+from .views import (NewsList, NewsDetail, Search, ArticleList, ArticleDetail, upgrade_me, subscribe, unsubscribe,
+                    NewsEdit, NewsDelete, ArticleEdit, ArticleDelete, ProtectedView, AuthorView, CategoryView)
 from . import views
 
 
@@ -20,5 +20,8 @@ urlpatterns = [
     path('article/<int:pk>/delete/', ArticleDelete.as_view(), name='article_delete'), # URL-шаблон для удаления статьи
     path('upgrade/', upgrade_me, name='upgrade'),
     path('prodected_page/', ProtectedView.as_view()),  # URL-шаблон страницы после авторизации
-    path('status/', AuthorView.as_view())
+    path('status/', AuthorView.as_view()),
+    path('category/<int:pk>/', CategoryView.as_view(), name='category_list'),  # URL-шаблон списка категорий
+    path('category/<int:pk>/subscribe', subscribe, name='subscribe'),
+    path('category/<int:pk>/unsubscribe', unsubscribe, name='unsubscribe'),
 ]

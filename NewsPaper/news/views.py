@@ -1,4 +1,5 @@
-from django.shortcuts import redirect
+
+from django.shortcuts import redirect, get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
@@ -110,7 +111,7 @@ class ArticleEdit(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
 
 
 class ArticleDelete(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
-    permission_required = ('news.delete_post',)
+    permission_required = ('news.delete_post')
     model = Post
     template_name = 'flatpages/article_delete.html'
     success_url = '/article/'
@@ -123,6 +124,7 @@ class Search(ListView):
     context_object_name = 'search'
     filterset_class = PostFilter
     paginate_by = 5
+    ordering = ['-timeCreate']
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -157,3 +159,38 @@ def upgrade_me(request):
 
 class AuthorView(LoginRequiredMixin, TemplateView):
     template_name = 'sign/status.html'
+
+
+class CategoryView(ListView):
+    model = Post
+    template_name = 'mailsub/category.html'
+    context_object_name = 'cat_view'
+    paginate_by = 10
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(categoryPost=self.category).order_by('-timeCreate')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
+        return context
+
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    message = 'Поздравляем! Вы подписаны на новости категорию '
+    return render(request, 'mailsub/subscribe.html', {'category': category, 'message': message})
+
+@login_required
+def unsubscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.remove(user)
+    return redirect(to='/news/')
+
