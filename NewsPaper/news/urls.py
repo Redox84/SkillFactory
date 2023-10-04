@@ -3,7 +3,6 @@ from .views import (NewsList, NewsDetail, Search, ArticleList, ArticleDetail, up
                     NewsEdit, NewsDelete, ArticleEdit, ArticleDelete, ProtectedView, AuthorView, CategoryView)
 from . import views
 
-
 app_name = 'news'
 
 urlpatterns = [

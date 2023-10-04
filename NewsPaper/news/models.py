@@ -61,7 +61,7 @@ class Post(models.Model):
         self.save()
 
     def preview(self):
-        return self.content[0:124] + '...'
+        return self.content[0:124]
 
     def __str__(self):
         return f'{self.title}: {self.timeCreate.strftime("%d-%m-%Y, %H:%M:%S")}'
