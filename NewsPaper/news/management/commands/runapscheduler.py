@@ -19,7 +19,6 @@ logger = logging.getLogger(__name__)
 # наша задача по выводу текста на экран
 def my_job():
     # Your job processing logic here...
-    print('Сработало')
     today = timezone.now()
     last_week = today - timedelta(days=7)
     posts = Post.objects.filter(timeCreate__gte=last_week)
@@ -60,8 +59,8 @@ class Command(BaseCommand):
         # добавляем работу нашему задачнику
         scheduler.add_job(
             my_job,
-            #trigger=CronTrigger(day_of_week="sun", hour="21", minute="18"),
-            trigger=CronTrigger(second="*/10"),
+            trigger=CronTrigger(day_of_week="mon", hour="13", minute="18"),
+            #trigger=CronTrigger(second="*/10"),
             # То же, что и интервал, но задача тригера таким образом более понятна django
             id="my_job",  # уникальный айди
             max_instances=1,
