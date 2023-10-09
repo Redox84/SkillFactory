@@ -69,6 +69,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('news_detail', args=[str(self.id)])
 
+    def get_absolute_urls(self):
+        return f'news/{self.id}'
+
 
 class PostCategory(models.Model):
     postPC = models.ForeignKey(Post, on_delete=models.CASCADE)

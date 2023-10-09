@@ -5,10 +5,12 @@
     <title>Уведомление</title>
 </head>
 <body>
-    <h1>Здравствуйте {{request.user.username }}! Новые статьи в вашей категории за неделю</h1>
+    <h1>Здравствуйте! </h1>
+    <h1>Новые статьи в вашей категории за неделю</h1>
+    <ul>
     {% for post in posts %}
-    <li><a href="{{ link }}{{ post.get_absolute_url }}">{{post.title}}</a></li>
+    <li><a href="{{link}}{{ post.get_absolute_urls }}">{{post.title}}</a></li>
     {% endfor %}
-
+    </ul>
 </body>
 </html>
