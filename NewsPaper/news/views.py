@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from .models import Post,  Category, Author
 from .filter import PostFilter
 from .forms import NewsForm, ArticleForm
-
+from .tasks import *
 
 #  Новости
 class NewsList(ListView):  # список превью
@@ -46,6 +46,7 @@ class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
         post.choiceType = 'NW'
         post.author = self.request.user.author
         post.save()
+        mail_task.delay(post.pk)
         return super().form_valid(form)
 
 
