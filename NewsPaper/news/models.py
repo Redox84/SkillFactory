@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.urls import reverse
-
+from django.core.cache import cache
 
 # Create your models here.
 
@@ -22,15 +22,15 @@ class Author(models.Model):
         self.save()
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username}: {self.ratingAuthor}'
 
 
 class Category(models.Model):
     nameCategory = models.CharField(max_length=100, unique=True)
-    subscribers = models.ManyToManyField(User, blank=True, related_name='categories')
+    subscribers = models.ManyToManyField(User, blank=True, related_name='Categories')
 
     def __str__(self):
-        return self.nameCategory
+        return f'{self.nameCategory}:'
 
 
 class Post(models.Model):
@@ -67,10 +67,11 @@ class Post(models.Model):
         return f'{self.title}: {self.timeCreate.strftime("%d-%m-%Y, %H:%M:%S")}'
 
     def get_absolute_url(self):
-        return reverse('news_detail', args=[str(self.id)])
-
-    def get_absolute_urls(self):
         return f'news/{self.id}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'post-{self.pk}')  # затем удаляем его из кэша, чтобы сбросить его
 
 
 class PostCategory(models.Model):
@@ -95,5 +96,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.textCom
-
-

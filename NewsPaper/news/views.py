@@ -4,12 +4,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
+from django.core.cache import cache
 from django.http import HttpResponseRedirect
 
-from .models import Post,  Category, Author
+from .models import *
 from .filter import PostFilter
 from .forms import NewsForm, ArticleForm
 from .tasks import *
+
 
 #  Новости
 class NewsList(ListView):  # список превью
@@ -46,7 +48,7 @@ class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
         post.choiceType = 'NW'
         post.author = self.request.user.author
         post.save()
-        mail_task.delay(post.pk)
+       # mail_task.delay(post.pk)   # рассылка через рэдис
         return super().form_valid(form)
 
 
@@ -82,6 +84,16 @@ class ArticleDetail(DetailView):
     model = Post
     template_name = 'flatpages/article_detail.html'
     context_object_name = 'post'
+
+    def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        # кэш очень похож на словарь, и метод get действует так же.
+        # Он забирает значение по ключу, если его нет, то забирает None.
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+        return obj
 
 
 class ArticleCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
@@ -179,6 +191,7 @@ class CategoryView(ListView):
         context['category'] = self.category
         return context
 
+
 @login_required
 def subscribe(request, pk):
     user = request.user
@@ -187,6 +200,7 @@ def subscribe(request, pk):
 
     message = 'Поздравляем! Вы подписаны на новости категорию '
     return render(request, 'mailsub/subscribe.html', {'category': category, 'message': message})
+
 
 @login_required
 def unsubscribe(request, pk):

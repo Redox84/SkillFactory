@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-{% load static %}
-{% load custom_tags %}
+{% load static %} <!-- Загружаем шаблон -->
+{% load custom_tags %} <!-- Загружаем фильтр -->
+{% load cache %} <!-- Загружаем кэширование -->
 <html>
+{% cache 50 head %}
 <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -11,6 +13,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
 </head>
+{% endcache %}
     <body>
         <!-- Responsive navbar-->
                 <!-- Responsive navbar-->
@@ -20,9 +23,9 @@
             {% else %}
             <h6><a href="/accounts/login/">Авторизация</a></h6>
             {% endif %}
-
-
         </div>
+
+        {% cache 30 navbar %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">News Portal</a>
@@ -48,6 +51,7 @@
                 </div>
             </div>
         </nav>
+        {% endcache %}
     <div>
 
     </div>
@@ -55,7 +59,7 @@
 {% block content %}
 {% endblock content %}
 <body>
-        {# Добавляем пагинацию на страницу #}
+    {# Добавляем пагинацию на страницу #}
 
     {# Информация о предыдущих страницах #}
     <div align="center">

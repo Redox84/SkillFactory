@@ -23,11 +23,111 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: храните секретный ключ, используемый при производстве, в секрете!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: не запускайте с включенной отладкой в рабочей среде!
 DEBUG = True
+
+# Включаем Логирование
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'style': '{',
+    'formatters': {
+        'info_general_format': {'format': '%(asctime)s %(levelname)s %(module)s %(message)s'},
+        'debug_format': {'format': '%(asctime)s %(levelname)s %(message)s'},
+        'warning_format': {'format': '%(asctime)s %(levelname)s %(pathname)s %(message)s'},
+        'error_critical_format': {'format': '%(asctime)s %(levelname)s %(pathname)s %(message)s %(exc_info)s'},
+        'error_critical_mail_format': {'format': '%(asctime)s %(levelname)s %(pathname)s %(message)s'},
+    },
+
+    'filters': {
+        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue',},
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse',},
+    },
+
+    'handlers': {
+        'console_debug': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'debug_format'
+        },
+        'console_warning': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'warning_format'
+        },
+        'console_err_crit': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'error_critical_format'
+        },
+        'file_general_log': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'info_general_format',
+            'filename': 'logs/general.log',
+        },
+        'file_errors_log': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.FileHandler',
+            'formatter': 'error_critical_format',
+            'filename': 'logs/errors.log',
+        },
+        'file_security_log': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.FileHandler',
+            'formatter': 'info_general_format',
+            'filename': 'logs/security.log',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'error_critical_mail_format'
+        }
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['console_debug', 'console_warning', 'console_err_crit', 'file_general_log'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'file_errors_log'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['mail_admins', 'file_errors_log'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['file_errors_log'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['file_errors_log'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.security': {
+            'handlers': ['file_security_log'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    }
+}
+
 
 ALLOWED_HOSTS = ['127.0.0.1']
 SITE_URL = 'http://127.0.0.1:8000/'
@@ -96,6 +196,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
+        # Указываем, куда будем сохранять кэшируемые файлы!
+        # Не забываем создать папку cache_files внутри папки с manage.py!
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -192,4 +301,6 @@ CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+
 
