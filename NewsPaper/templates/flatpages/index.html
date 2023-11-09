@@ -1,0 +1,20 @@
+{% extends 'flatpages/default.html' %}
+{% load tz %} <!-- не забываем загрузить тег для работы с часовыми поясами -->
+
+
+<html>
+{% block content %}
+<h2 style="text-align: center;">Добро пожаловать!</h2>
+<h4 style="text-align: center;">{{ TIME_ZONE }} {{ current_time|timezone:TIME_ZONE }}</h4>
+
+<body>
+
+    {% for model in models %}
+    <div class="model-class">
+        {{ model.name }}
+    </div>
+    {% endfor %}
+</body>
+{% endblock content %}
+</html>
+

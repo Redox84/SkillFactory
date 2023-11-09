@@ -1,10 +1,13 @@
 {% extends 'flatpages/default.html' %}
-
+{% load tz %}
 {% load cenzura %}
 {% load custom_tags %}
+
+
 {% block content %}
 
     <h1 style="text-align: center;">Страница поиска</h1>
+<h3 style="text-align: center;">{{ TIME_ZONE }}  {{ current_time|timezone:TIME_ZONE }}</h3>
 <hr />
 <div align="center">
     <form action="" method="GET">

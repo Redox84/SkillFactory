@@ -1,1 +1,6 @@
 2023-10-31 18:24:57,010 WARNING log Forbidden (CSRF token missing.): /news/create/
+2023-11-07 00:57:22,911 WARNING log Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+2023-11-07 00:59:36,473 WARNING log Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+2023-11-07 00:59:43,383 WARNING log Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+2023-11-07 01:17:12,005 WARNING log Forbidden (CSRF token from POST incorrect.): /i18n/setlang/
+2023-11-07 01:18:53,462 WARNING log Forbidden (CSRF token from POST incorrect.): /admin/logout/

@@ -136,6 +136,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',  # Переводчик, обязательно впишите его перед админом
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -162,7 +163,6 @@ LOGIN_REDIRECT_URL = '/prodected_page/'
 LOGOUT_REDIRECT_URL = '/news/'
 
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -171,9 +171,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-
+    'basic.middlewares.TimezoneMiddleware',  # часовые пояса
 ]
 
 ROOT_URLCONF = 'NewsPaper.urls'
@@ -244,6 +244,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# добавляем перевод
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('ru', 'Русский')
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -254,7 +263,7 @@ TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

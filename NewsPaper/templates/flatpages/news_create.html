@@ -1,8 +1,10 @@
 {% extends 'flatpages/default.html' %}
+{% load tz %}
 
 {% block content %}
 <div align="center">
 <h1>Создать новость</h1>
+  <h3 style="text-align: center;">{{ TIME_ZONE }}  {{ current_time|timezone:TIME_ZONE }}</h3>
 <hr>
   <form method="POST">
     {% csrf_token %}

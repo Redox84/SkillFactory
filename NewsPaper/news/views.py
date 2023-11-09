@@ -1,16 +1,41 @@
+import pytz  # импортируем стандартный модуль для работы с часовыми поясами
 
 from django.shortcuts import redirect, get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
+from django.utils.translation import gettext as _  # импортируем функцию для перевода
 from django.core.cache import cache
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse  # импортируем респонс для проверки текста
+from django.utils import timezone
 
 from .models import *
 from .filter import PostFilter
 from .forms import NewsForm, ArticleForm
 from .tasks import *
+
+
+class Index(View):
+    template_name = 'flatpages/index.html'
+
+    def get(self, request):
+        # current_time = timezone.now()
+        # . Translators: This message appears on the home page only
+        models = MyModel.objects.all()
+        context = {
+            'models': models,
+            'current_time': timezone.now(),
+            'timezones': pytz.common_timezones  # добавляем в контекст все доступные часовые пояса
+        }
+        return HttpResponse(render(request, 'flatpages/index.html', context))
+
+    #  по пост-запросу будем добавлять в сессию часовой пояс,
+    #  который и будет обрабатываться написанным нами ранее middleware
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/index/')
 
 
 #  Новости
@@ -23,6 +48,16 @@ class NewsList(ListView):  # список превью
     def get_queryset(self):
         queryset = super().get_queryset().filter(choiceType='NW')  # Фильтруем только новости
         return queryset.order_by('-timeCreate')        # и сортируем по убыванию даты
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+        return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/news/')
 
 
 class NewsDetail(DetailView):  # полные новости
@@ -41,7 +76,6 @@ class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect('/accounts/login/')
 
@@ -50,6 +84,17 @@ class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
         post.save()
        # mail_task.delay(post.pk)   # рассылка через рэдис
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+        return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/news/create/')
 
 
 class NewsEdit(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
@@ -79,6 +124,16 @@ class ArticleList(ListView):
         # Фильтруем только статьи и сортируем по убыванию даты (другим способом)
         return article
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+        return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/article/')
+
 
 class ArticleDetail(DetailView):
     model = Post
@@ -105,14 +160,23 @@ class ArticleCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect('/accounts/login/')
-
         post.type = 'AR'
         post.author = self.request.user.author
         post.save()
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+        return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/article/create/')
 
 
 class ArticleEdit(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
@@ -148,7 +212,13 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
         context['categories'] = Category.objects.all()  # Получение всех категорий
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
         return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/search/')
 
 
 class ProtectedView(LoginRequiredMixin, TemplateView):
@@ -189,6 +259,8 @@ class CategoryView(ListView):
         context = super().get_context_data(**kwargs)
         context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
         context['category'] = self.category
+        context['current_time'] = timezone.now(),
+        context['timezones'] = pytz.common_timezones
         return context
 
 
@@ -208,4 +280,5 @@ def unsubscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.remove(user)
     return redirect(to='/news/')
+
 

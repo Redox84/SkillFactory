@@ -1,15 +1,16 @@
 from django.urls import path
 from django.views.decorators.cache import cache_page
-from .views import (NewsList, NewsDetail, Search, ArticleList, ArticleDetail, upgrade_me, subscribe, unsubscribe,
+from .views import (Index, NewsList, NewsDetail, Search, ArticleList, ArticleDetail, upgrade_me, subscribe, unsubscribe,
                     NewsEdit, NewsDelete, ArticleEdit, ArticleDelete, ProtectedView, AuthorView, CategoryView)
 from . import views
 
 app_name = 'news'
 
 urlpatterns = [
+    path('index/', Index.as_view(), name='home'),
     path('search/', Search.as_view(), name='search'),  # URL-шаблон Поисковой страницы
-    path('news/', cache_page(60)(NewsList.as_view()), name='news'),  # URL-шаблон для списка новостей
-    path('news/<int:pk>/', cache_page(300)(NewsDetail.as_view()), name='news_detail'),  # URL-шаблон для полной новости
+    path('news/', cache_page(10)(NewsList.as_view()), name='news'),  # URL-шаблон для списка новостей
+    path('news/<int:pk>/', cache_page(10)(NewsDetail.as_view()), name='news_detail'),  # URL-шаблон для полной новости
     path('news/create/', views.NewsCreate.as_view(), name='news_create'),  # URL-шаблон для создания новостей
     path('news/<int:pk>/edit/', NewsEdit.as_view(), name='news_edit'),  # URL-шаблон для редактирования новостей
     path('news/<int:pk>/delete/', NewsDelete.as_view(), name='news_delete'),  # URL-шаблон для удаления новостей

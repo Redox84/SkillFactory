@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from .models import Author, Category, Post, Comment, PostCategory
+from .models import Author, Category, Post, Comment, PostCategory, MyModel
+from modeltranslation.admin import TranslationAdmin
+# импортируем модель амдинки (вспоминаем модуль про переопределение стандартных админ-инструментов)
+
+
+class MyModelAdmin(TranslationAdmin):
+    model = MyModel
 
 
 class CategoryInLine(admin.TabularInline):
@@ -8,7 +14,7 @@ class CategoryInLine(admin.TabularInline):
     extra = 1
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(TranslationAdmin, admin.ModelAdmin):
     model = Post
     inlines = [CategoryInLine]
     # list_display — это список или кортеж со всеми полями, которые вы хотите видеть в таблице с товарами
@@ -38,7 +44,7 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ['user', 'rating']
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin, admin.ModelAdmin):
     model = Category
     list_display = ('id', 'nameCategory')
     list_filter = ['nameCategory']
@@ -50,3 +56,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(MyModel)

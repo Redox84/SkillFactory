@@ -1,11 +1,13 @@
 {% extends 'flatpages/default.html' %}
 {% load cenzura %} <!-- загружаем фильтр-->
 {% load custom_tags %}<!-- Подключаем новый файл с нашим тегом -->
+{% load tz %}
+
 
 
 {% block content %}
     <h1 style="text-align: center;">Список новостей</h1>
-	<h3 style="text-align: center;">{% current_time '%d %b %Y' %}</h3>
+    <h3 style="text-align: center;">{{ TIME_ZONE }}  {{ current_time|timezone:TIME_ZONE }}</h3>
 
 <hr/>
 {% if news %}

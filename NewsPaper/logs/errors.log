@@ -14,3 +14,859 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
 django.template.exceptions.TemplateDoesNotExist: news/post_list.html
 2023-10-31 18:28:03,145 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/ HTTP/1.1" 500 88497 None
+2023-11-06 23:18:43,857 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name."), <traceback object at 0x00000000060AE3C0>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\templatetags\cache.py", line 53, in render
+    value = self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2023-11-06 23:18:43,887 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/ HTTP/1.1" 500 185498 None
+2023-11-07 02:21:08,927 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000000005DF5340>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 26, in get
+    return HttpResponse(render(request, 'index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-11-07 02:21:08,927 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 94810 None
+2023-11-07 02:22:46,353 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000000005DC5580>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 28, in get
+    return HttpResponse(render(request, 'index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-11-07 02:22:46,363 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 94810 None
+2023-11-07 02:25:56,974 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000000005D7A3C0>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 25, in get
+    return HttpResponseRedirect(render(request, 'index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-11-07 02:25:56,974 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 94876 None
+2023-11-07 23:57:45,986 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000000005786B80>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 25, in get
+    return HttpResponseRedirect(render(request, 'index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-11-07 23:57:45,996 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 94750 None
+2023-11-08 00:05:14,127 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000000005D51AC0>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 25, in get
+    return HttpResponseRedirect(render(request, 'index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-11-08 00:05:14,127 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 94875 None
+2023-11-08 00:07:58,827 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000000005D89700>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 25, in get
+    return HttpResponseRedirect(render(request, 'index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2023-11-08 00:07:58,827 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 94879 None
+2023-11-08 00:08:33,647 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'TypeError'>, TypeError('quote_from_bytes() expected bytes'), <traceback object at 0x0000000005E82EC0>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 25, in get
+    return HttpResponseRedirect(render(request, 'flatpages/index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\http\response.py", line 576, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\encoding.py", line 139, in iri_to_uri
+    return quote(iri, safe="/#%[]=:;$&()+,!?*@'~")
+  File "D:\pyton\lib\urllib\parse.py", line 851, in quote
+    return quote_from_bytes(string, safe)
+  File "D:\pyton\lib\urllib\parse.py", line 876, in quote_from_bytes
+    raise TypeError("quote_from_bytes() expected bytes")
+TypeError: quote_from_bytes() expected bytes
+2023-11-08 00:08:33,647 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 95618 None
+2023-11-08 17:41:53,936 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /admin/news/post/ (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x00000000060B6B80>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 2068, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 376, in __len__
+    self._fetch_all()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2023-11-08 17:41:53,953 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /admin/news/post/ HTTP/1.1" 500 169728 None
+2023-11-08 17:42:48,973 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /admin/news/postcategory/ (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x0000000006297780>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 1931, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 834, in get_changelist_instance
+    return ChangeList(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\views\main.py", line 122, in __init__
+    self.queryset = self.get_queryset(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\views\main.py", line 503, in get_queryset
+    ) = self.get_filters(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\views\main.py", line 182, in get_filters
+    spec = field_list_filter_class(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\filters.py", line 175, in create
+    return list_filter_class(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\filters.py", line 188, in __init__
+    self.lookup_choices = self.field_choices(field, request, model_admin)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\filters.py", line 225, in field_choices
+    return field.get_choices(include_blank=False, ordering=ordering)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\fields\__init__.py", line 980, in get_choices
+    return (blank_choice if include_blank else []) + [
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 394, in __iter__
+    self._fetch_all()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2023-11-08 17:42:48,983 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /admin/news/postcategory/ HTTP/1.1" 500 199748 None
+2023-11-08 17:42:54,415 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /admin/news/comment/ (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x000000000632C200>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 2068, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 376, in __len__
+    self._fetch_all()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2023-11-08 17:42:54,415 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /admin/news/comment/ HTTP/1.1" 500 177937 None
+2023-11-08 17:43:53,640 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x000000000612E280>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\defaulttags.py", line 321, in render
+    if match:
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 408, in __bool__
+    self._fetch_all()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2023-11-08 17:43:53,648 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/ HTTP/1.1" 500 206341 None
+2023-11-08 17:44:07,955 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /article/ (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x0000000005E76800>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\defaulttags.py", line 321, in render
+    if match:
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 408, in __bool__
+    self._fetch_all()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2023-11-08 17:44:07,960 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /article/ HTTP/1.1" 500 206001 None
+2023-11-08 17:55:59,451 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /admin/news/post/ (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x0000000005EDA040>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 686, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\decorators\cache.py", line 62, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\contrib\admin\options.py", line 2068, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 376, in __len__
+    self._fetch_all()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 1866, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2023-11-08 17:55:59,451 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /admin/news/post/ HTTP/1.1" 500 169154 None
+2023-11-09 20:42:24,109 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.utils.datastructures.MultiValueDictKeyError'>, MultiValueDictKeyError('timezone'), <traceback object at 0x0000000005AD8E80>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+KeyError: 'timezone'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 57, in post
+    request.session['django_timezone'] = request.POST['timezone']
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'timezone'
+2023-11-09 20:42:24,129 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "POST /news/ HTTP/1.1" 500 93003 None
+2023-11-09 20:58:22,007 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'news' not found. 'news' is not a valid view function or pattern name."), <traceback object at 0x00000000058FA600>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 61, in post
+    return redirect('news')
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 48, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 145, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'news' not found. 'news' is not a valid view function or pattern name.
+2023-11-09 20:58:22,067 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "POST /news/ HTTP/1.1" 500 102642 None
+2023-11-10 00:08:41,002 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /category/3/ (<class 'TypeError'>, TypeError("post() got an unexpected keyword argument 'pk'"), <traceback object at 0x0000000005ED1780>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: post() got an unexpected keyword argument 'pk'
+2023-11-10 00:08:41,052 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "POST /category/3/ HTTP/1.1" 500 76932 None
+2023-11-10 00:10:50,785 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /category/3/ (<class 'TypeError'>, TypeError("post() got an unexpected keyword argument 'pk'"), <traceback object at 0x0000000005DD31C0>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: post() got an unexpected keyword argument 'pk'
+2023-11-10 00:10:50,905 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "POST /category/3/ HTTP/1.1" 500 76921 None
+2023-11-10 00:13:49,203 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /category/3/ (<class 'TypeError'>, TypeError("post() got an unexpected keyword argument 'pk'"), <traceback object at 0x0000000005F25DC0>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: post() got an unexpected keyword argument 'pk'
+2023-11-10 00:13:49,233 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "POST /category/3/ HTTP/1.1" 500 76932 None
+2023-11-10 00:47:26,680 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/53/ (<class 'TypeError'>, TypeError("post() got an unexpected keyword argument 'pk'"), <traceback object at 0x0000000005CE4100>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: post() got an unexpected keyword argument 'pk'
+2023-11-10 00:47:26,707 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "POST /news/53/ HTTP/1.1" 500 81363 None
+2023-11-10 00:49:16,818 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/53/ (<class 'TypeError'>, TypeError("get() got an unexpected keyword argument 'pk'"), <traceback object at 0x0000000005DF0240>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: get() got an unexpected keyword argument 'pk'
+2023-11-10 00:49:16,938 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/53/ HTTP/1.1" 500 80817 None
+2023-11-10 00:49:27,230 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/52/ (<class 'TypeError'>, TypeError("get() got an unexpected keyword argument 'pk'"), <traceback object at 0x0000000005889140>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\decorators.py", line 133, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: get() got an unexpected keyword argument 'pk'
+2023-11-10 00:49:27,233 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/52/ HTTP/1.1" 500 80817 None
+2023-11-10 02:14:58,662 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /article/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Could not parse the remainder: '% if current_time.hour >= 3 or current_time.hour <= 7 %' from '% if current_time.hour >= 3 or current_time.hour <= 7 %'"), <traceback object at 0x0000000005D6D740>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 484, in parse
+    raise self.error(token, e)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% if current_time.hour >= 3 or current_time.hour <= 7 %' from '% if current_time.hour >= 3 or current_time.hour <= 7 %'
+2023-11-10 02:14:58,692 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /article/ HTTP/1.1" 500 254380 None
+2023-11-10 02:37:53,364 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 100: 'else'. Did you forget to register or load this tag?"), <traceback object at 0x000000000611CA80>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 32, in get
+    return HttpResponse(render(request, 'flatpages/index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 100: 'else'. Did you forget to register or load this tag?
+2023-11-10 02:37:53,399 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 272023 None
+2023-11-10 03:34:03,974 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\utils\log.py Internal Server Error: /index/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Unclosed tag on line 102: 'if'. Looking for one of: elif, else, endif."), <traceback object at 0x0000000005AD1300>)
+Traceback (most recent call last):
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\views\generic\base.py", line 142, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Redox\PycharmProjects\django_news\NewsPaper\news\views.py", line 32, in get
+    return HttpResponse(render(request, 'flatpages/index.html', context))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\defaulttags.py", line 954, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 518, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\template\base.py", line 581, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 102: 'if'. Looking for one of: elif, else, endif.
+2023-11-10 03:34:03,994 ERROR C:\Users\Redox\PycharmProjects\django_news\venv\lib\site-packages\django\core\servers\basehttp.py "GET /index/ HTTP/1.1" 500 272155 None

@@ -1,11 +1,13 @@
 {% extends 'flatpages/default.html' %}
 {% load cenzura %} <!-- загружаем фильтр-->
 {% load custom_tags %}<!-- Подключаем новый файл с нашим тегом -->
+{% load i18n %}
+{% load tz %}
 
 
 {% block content %}
-    <h1 style="text-align: center;">Список статей</h1>
-	<h3 style="text-align: center;">{% current_time '%d %b %Y' %}</h3>
+    <h1 style="text-align: center;">{% trans "List of articles" %}</h1>
+	<h3 style="text-align: center;">{{ TIME_ZONE }}  {{ current_time|timezone:TIME_ZONE }}</h3>
 
 <hr/>
 {% if article %}
@@ -19,13 +21,13 @@
               {% endfor %}
             </div>
             <p style="text-align: center;">{{ post.content|truncatechars:20|censor }} {{"..."}}</p>
-            <p style="text-align: center;"><a href="{% url 'news:article_detail' post.id %}">Читать полностью</a></p>
+            <p style="text-align: center;"><a href="{% url 'news:article_detail' post.id %}">{% trans "Read completely" %}</a></p>
 
 
             <hr/>
         {% endfor %}
 
 {% else %}
-    <h2>Статей нет!</h2>
+    <h2>{% trans "There are no articles" %}</h2>
 {% endif %}
 {% endblock content %}

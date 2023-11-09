@@ -2,51 +2,87 @@
 {% load static %} <!-- Загружаем шаблон -->
 {% load custom_tags %} <!-- Загружаем фильтр -->
 {% load cache %} <!-- Загружаем кэширование -->
+{% load i18n %} <!-- Загружаем локализатор -->
+{% load tz %} <!-- не забываем загрузить тег для работы с часовыми поясами -->
+
 <html>
-{% cache 50 head %}
+{% cache 1 head %}
+
+{% trans "News Portal" as News_Portal %}
 <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Новостной портал</title>
-        <!-- Core theme CSS (includes Bootstrap)-->
+        <title>{{News_Portal}}</title>
+        <!-- Core theme CSS (includes Bootstrap) установка стиля-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+        <!-- Если сейчас больше чем 19 или же меньше 7, то выводим тёмную тему, иначе выводим светлую -->
+
 </head>
 {% endcache %}
     <body>
         <!-- Responsive navbar-->
                 <!-- Responsive navbar-->
         <div>
+            <!-- Авторизация-->
             {% if user.is_authenticated %}
-            <h6><a style="margin-left: 20px" href="/prodected_page/"> {{request.user.username }}</a><a style="margin-left: 50px" href="/accounts/logout/">Выйти</a> </h6>
+            <h6><a style="margin-left: 20px" href="/prodected_page/"> {{request.user.username }}</a>
+                <a style="margin-left: 50px" href="/accounts/logout/">{% trans "Exit" %}</a> </h6>
             {% else %}
-            <h6><a href="/accounts/login/">Авторизация</a></h6>
+            <h6><a href="/accounts/login/">{% trans "Login"%}</a></h6>
             {% endif %}
         </div>
+            <div>
+            <!-- выбор языка-->
+            <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+                <input type="hidden" name="next" value="{{ redirect_to }}">
 
-        {% cache 30 navbar %}
+                <select name="language" id="">
+                    {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+                    {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+
+                    {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                    <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.name_local }} - {{ language.code }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="set">
+            </form>
+            </div>
+
+    <div align="right">
+        <!-- часовой пояс  -->
+        {% get_current_timezone as TIME_ZONE %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="timezone">{% trans "Time zone"%}:</label>
+            <select name="timezone">
+                {% for tz in timezones %}
+                <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected{% endif %}>{{ tz }}</option>
+                {% endfor %}
+            </select>
+            <input style="margin-right: 50px" type="submit" value="Set">
+        </form>
+        <!-- Отображаем время в выбранном часовом поясе  -->
+        {# <h5 style="margin-right: 100px">{{ TIME_ZONE }} {{ current_time|timezone:TIME_ZONE }}</h5> #}
+    </div>
+
+        {% cache 1 navbar %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">News Portal</a>
+                <a class="navbar-brand" href="/index/">{{News_Portal}}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/news/">Новости</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/article/">Статьи</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/news/create/">Создать новость</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/article/create/">Создать статью</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/search/">Поиск</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/news/">{% trans "News"%}</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/article/">{% trans "Article"%}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/news/create/">{% trans "News create" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/article/create/">{% trans "Article create"%}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search/">{% trans "Search"%}</a></li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Список</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/news/">Новости</a></li>
-                                <li><a class="dropdown-item" href="/article/">Статьи</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -59,6 +95,11 @@
 {% block content %}
 {% endblock content %}
 <body>
+        <!-- Если сейчас больше чем 19 или же меньше 7, то выводим тёмную тему, иначе выводим светлую -->
+    <style>
+         body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+    </style>
+
     {# Добавляем пагинацию на страницу #}
 
     {# Информация о предыдущих страницах #}
