@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% extends 'flatpages/default.html' %}
+{% load cenzura %}
+
+<html>
+{% block title %}
+        <div align="center">
+            <h1>Объявление</h1>
+        </div>
+{% endblock title %}
+
+{% block content %}
+
+    <div align="center">
+        <h1 style="text-align: center;">{{ post.title|censor }}</h1>
+        <p>Автор: {{ post.author }}</p>
+        <div style="margin-left: 50px;">{{ post.timeCreate|date:"d M Y, H : m" }}</div>
+        <div class="post_tag">
+            {% for category in post.categoryP.all %}
+            <a href="{% url 'bulletin:category' category.id %}">{{ category }},</a>
+            {% endfor %}
+        </div>
+        <div style="margin: 15px 100px;">{{ post.content|censor|safe }}</div>
+        <hr>
+        <div align="center"><h3>Отклики</h3></div>
+        <hr>
+        {% if post.replies.all %}
+            {% for res in post.replies.all %}
+            <p>{{ res }}</p>
+            {% endfor %}
+        {% endif %}
+        <br>
+            {% if user.is_authenticated %}
+            <div style="margin: 50px 150px;">
+                {% if post.author == request.user %}
+                    <button> <a href="{% url 'bulletin:edit' post.id %}"> Редактировать </a> </button>
+                    <button style="margin: 15px;"> <a href="{% url 'bulletin:delete' post.id %}"> Удалить </a> </button>
+                {% else %}
+                     <button> <a href="{% url 'bulletin:respon_create' post.id %}"> Откликнуться </a> </button>
+                {% endif %}
+            </div>
+            {% endif %}
+    </div>
+{% endblock content %}
+
+</html>

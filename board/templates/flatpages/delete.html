@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% extends 'flatpages/default.html' %}
+
+
+<html>
+    {% block title %}
+      <div align="center">
+        <h1>Удалить Объявление</h1>
+
+      </div>
+    {% endblock title %}
+
+    {% block content %}
+    <div>
+    {% if user.is_authenticated %}
+        <p>Вы уверены, что хотите удалить это Объявление?</p>
+        <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        </form>
+    {% else %}
+        <p>У Вас не достаточно прав для удаления</p>
+    {% endif %}
+    </div>
+    {% endblock content %}
+</html>

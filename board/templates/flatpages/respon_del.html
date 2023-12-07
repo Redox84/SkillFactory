@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+{% extends 'flatpages/default.html' %}
+
+
+<html>
+    {% block title %}
+      <div align="center">
+        <h1>Удалить </h1>
+
+      </div>
+    {% endblock title %}
+
+    {% block content %}
+    <div>
+        <p>Вы уверены, что хотите Отклонить отклик?</p>
+        <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        </form>
+    </div>
+    {% endblock content %}
+</html>

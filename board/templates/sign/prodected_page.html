@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'flatpages/default.html' %}
+
+<html lang="ru">
+{% block title %}
+<h2 style="text-align: center"> Личный кабинет пользователя {{request.user.username}}. </h2>
+{% endblock title %}
+
+{% block content %}
+<a href="/news/" style="padding-left: 20px"> Перейти к просмотру новостей </a>
+<hr>
+    <div>
+        <h2>Найти отклики на ваши объявления</h2>
+            <form action="" method="get">
+                {{ filterset.form }}
+                <input type="submit" value="Найти">
+            </form>
+        <button style="margin-left: 150px"> <a href="/prodected_page/">Сбросить фильтр</a> </button>
+    </div>
+
+<h4>Список откликов на выбранное объявление</h4>
+{% if respon %}
+{% for respon in respon %}
+    {% if respon.confirmed %}
+        <p><h6><font color="#009933">{{ respon.author }} (Принят)</font></h6></p>
+        <a href="{% url 'bulletin:respon_d' respon.id %}">{{ respon.content }}</a>
+        <hr>
+    {% else %}
+        <p>{{ respon.author }}</p>
+        <a href="{% url 'bulletin:respon_d' respon.id %}">{{ respon.content }}</a>
+        <hr>
+
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+
+<button style="margin-left: 20px"> <a href="/accounts/logout/">Выйти</a> </button>
+
+{% endblock content %}
+</html>

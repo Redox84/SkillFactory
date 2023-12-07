@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %} <!-- Загружаем шаблон -->
+{% load custom_tags %} <!-- Загружаем фильтр -->
+
+
+<html lang="ru">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Доска Объявлений</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <!-- main css-->
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    </head>
+    <body>
+        <!--================Header Area =================-->
+        <header class="header_area">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+
+                     <div>
+                    <!-- Авторизация-->
+                        {% if user.is_authenticated %}
+                            <h6><a style="margin-left: 20px"> {{request.user.username }}</a>
+                                <a style="margin-left: 50px" href="/accounts/logout/">Выйти</a></h6>
+                            <h6><a class="nav-link" href="/prodected_page/">Личный кабинет</a></h6>
+                        {% else %}
+                            <h6><a href="/accounts/login/">Войти / Зарегестрироваться</a></h6>
+                        {% endif %}
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="/news/">Объявления</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/news/create/">Создать объявление</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!--================Header Area =================-->
+
+        <!--================Banner Area =================-->
+        <section class="banner_area blog_banner d_flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="banner_content text-center">
+                    <img src="{% static 'image/about_banner.jpg' %}" width = 350 alt="">
+                    <img src="{% static 'image/about_banner2.jpg' %}" width = 350 alt="">
+                {% block title %}
+                {% endblock title %}
+                </div>
+            </div>
+            <hr />
+        </section>
+        <!--================Banner Area =================-->
+<br />
+<br />
+        <!--================Blog Area =================-->
+        <section class="blog_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="blog_left_sidebar">
+                            {% block content %}
+                            {% endblock content %}
+
+                <!-- Пагинация -->
+                            <nav class="blog-pagination justify-content-center d-flex">
+		                        <ul class="pagination">
+                                    {# Информация о предыдущих страницах #}
+                                    <div align="center">
+                                    {% if page_obj.has_previous %}
+                                        <a href="?{% url_replace page=1 %}">1</a>
+                                        {% if page_obj.previous_page_number != 1 %}
+                                           ...
+                                           <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {# Информация о текущей странице #}
+                                    {{ page_obj.number }}
+
+                                    {# Информация о следующих страницах #}
+                                    {% if page_obj.has_next %}
+                                        <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+                                        {% if paginator.num_pages != page_obj.next_page_number %}
+                                           ...
+                                            <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    </div>
+
+		                        </ul>
+		                    </nav>
+                            <hr />
+                        </div>
+                    </div>
+                <!-- Пагинация  end-->
+
+
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{% extends 'flatpages/default.html' %}
+
+
+<html>
+  {% block title %}
+      <div align="center">
+        <h1>Создание Объявления</h1>
+      </div>
+  {% endblock title %}
+
+  {% block content %}
+
+      <div align="center">
+        <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button type="submit">Создать</button>
+        </form>
+      </div>
+  <br/>
+  {% endblock content %}
+</html>

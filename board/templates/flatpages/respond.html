@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+{% extends 'flatpages/default.html' %}
+{% load static %}
+
+<html lang="ru">
+{% block title %}
+        <h1 style="text-align: center;">Отклик</h1>
+{% endblock title %}
+
+{% block content %}
+
+{% if not respon.confirmed %}
+    <div align="center" style="padding-left: 100px">
+        <div class="row">
+            <div class="col-md-7" style="padding-left: 100px">
+
+                <button class="btn btn-success ms-3 me-md-auto" name="confirmed" type="submit">
+                    <a href="{% url 'bulletin:respon_accept' respon.id %}"> Принять </a>
+                </button>
+
+            </div>
+
+            <div class="col-md-3">
+                <button class="btn btn-danger ms-3 me-md-auto" name="delete" type="submit">
+                    <a href="{% url 'bulletin:respon_del' respon.id %}"> Отклонить </a>
+                </button>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div align="center" style="padding-left: 100px">
+        <a><img src="{% static 'image/sign.png' %}" type="image/png" width="50" height="50"><h5>Принят</h5></a>
+    </div>
+    {% endif %}
+
+<div align="center" style="padding-left: 100px">
+    <hr>
+    <h4>{{ respon.author}}</h4>
+    <h5>{{ respon.timeR|date:'d M Y' }}</h5>
+    <h5>{{ respon.content }}</h5>
+
+</div>
+{% endblock content %}
+</html>

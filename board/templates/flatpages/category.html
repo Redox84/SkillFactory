@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'flatpages/default.html' %}
+{% load cenzura %} <!-- загружаем фильтр-->
+{% load custom_tags %}<!-- Подключаем новый файл с нашим тегом -->
+
+
+<html>
+    {% block title %}
+        <h1 style="text-align: center;">Список Объявлений</h1>
+    {% endblock title %}
+
+{% block content %}
+{% if cat_view %}
+
+    {% for post in cat_view %}
+    <article class="row blog_item">
+        <div class="col-md-3">
+            <div class="blog_info text-center">
+                <p>Автор: {{ post.author }}</p>
+                <a>{{ post.timeCreate|date:'d M Y, H m' }}</a>
+                <div class="post_tag">
+                    {% for category in post.categoryP.all %}
+                    <a href="{% url 'bulletin:category' category.id %}">{{ category }},</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="blog_post">
+                <div class="blog_details" style="text-align: center;">
+                    <a style="text-align: center;"><h3>{{ post.title|censor }}</h3></a>
+                    <a href="{% url 'bulletin:detail' post.id %}" class="view_btn button_hover">Читать полностью</a>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr />
+    {% endfor %}
+{% endif %}
+{% endblock content %}

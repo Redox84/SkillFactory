@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'flatpages/default.html' %}
+<html lang="en">
+
+{% block title %}
+    <h2 style="text-align: center">Форма создания отклика</h2>
+{% endblock title %}
+
+{% block content %}
+    <div align="center">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-secondary btn-sm" type="submit" value="Отправить"/>
+    </form>
+    </div>
+{% endblock content %}
+</html>
