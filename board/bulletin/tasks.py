@@ -35,13 +35,14 @@ def action_every_week():   # Рассылка раз в неделю
 
 @shared_task
 def mail_respon(pk):  # Рассылка при создании отклика
-    post = Post.objects.get(pk=pk)
-    author = post.author.email
+    respon = Respon.objects.get(pk=pk)
+    author = respon.postR.author.email
+
     html_content = render_to_string(
         'mailsub/respon_created_email.html',
         {
-            'text': f'{post.content}',
-            'link': f'{settings.SITE_URL}news/{pk}'
+            'text': f'{respon.content}',
+            'link': f'{settings.SITE_URL}news/{respon.postR.pk}'
         }
     )
 
@@ -58,14 +59,13 @@ def mail_respon(pk):  # Рассылка при создании отклика
 
 @shared_task
 def mail_respon_ac(pk):  # Рассылка при принятии отклика
-    post = Post.objects.get(pk=pk)
     respon = Respon.objects.get(pk=pk)
     author_email = respon.author.email
     html_content = render_to_string(
         'mailsub/respon_accept_email.html',
         {
-            'text': f'{post.title}',
-            'link': f'{settings.SITE_URL}news/{pk}'
+            'text': f'{respon.postR.title}',
+            'link': f'{settings.SITE_URL}news/{respon.postR.pk}'
         }
     )
 

@@ -36,7 +36,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ResponAdmin(admin.ModelAdmin):
     model = Respon
-    list_display = ('id', 'timeR', )
+    list_display = ('id', 'timeR', 'content', )
 
 
 admin.site.register(Category, CategoryAdmin)
